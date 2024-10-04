@@ -33,7 +33,7 @@
 }
 
 // Add file to the queue
-- (NSURLSessionDownloadTask *)createDownloadTask:(NSString *)url size:(NSUInteger)size sha:(NSString *)sha altName:(NSString *)altName toPath:(NSString *)path success:(void (^)())success retryCount:(NSInteger)retryCount {
+- (NSURLSessionDownloadTask *)createDownloadTask0:(NSString *)url size:(NSUInteger)size sha:(NSString *)sha altName:(NSString *)altName toPath:(NSString *)path success:(void (^)())success retryCount:(NSInteger)retryCount {
     BOOL fileExists = [NSFileManager.defaultManager fileExistsAtPath:path];
     NSInteger maxRetryAttempts = 3;  // Max number of retries
 
