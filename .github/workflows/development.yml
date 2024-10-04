@@ -52,6 +52,11 @@ jobs:
         with:
           java-version: 8
           distribution: corretto
+
+      - name: Check Java Version
+        run: |
+          java -version
+          echo $JAVA_HOME
           
       - name: Checkout repository
         uses: actions/checkout@main
