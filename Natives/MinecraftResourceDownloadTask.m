@@ -29,8 +29,10 @@
 }
 
 // Add file to the queue
-- (NSURLSessionDownloadTask *)createDownloadTask:(NSString *)url size:(NSUInteger)size sha:(NSString *)sha altName:(NSString *)altName toPath:(NSString *)path success:(void (^)())success {
+- (NSURLSessionDownloadTask *)createDownloadTask:(NSString *)url size:(NSUInteger)size sha:(NSString *)sha altName:(NSString *)altName toPath:(NSString *)path success:(void (^)())success retryCount:(NSInteger)retryCount {
     BOOL fileExists = [NSFileManager.defaultManager fileExistsAtPath:path];
+    NSInteger maxRetryAttempts = 3;  // Max number of retries
+
     // logSuccess?
     if (fileExists && [self checkSHA:sha forFile:path altName:altName]) {
         if (success) success();
@@ -57,7 +59,18 @@
         if (self.progress.cancelled) {
             // Ignore any further errors
         } else if (error != nil) {
-            [self finishDownloadWithError:error file:name];
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+            
+            // Check for 429 error code
+            if (httpResponse.statusCode == 429 && retryCount < maxRetryAttempts) {
+                NSLog(@"[MCDL] HTTP 429 - Retrying download for %@ (attempt %ld)", name, (long)retryCount + 1);
+                // Retry the download with an incremented retryCount
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self createDownloadTask:url size:size sha:sha altName:altName toPath:path success:success retryCount:retryCount + 1];
+                });
+            } else {
+                [self finishDownloadWithError:error file:name];
+            }
         } else if (![self checkSHA:sha forFile:path altName:altName]) {
             [self finishDownloadWithErrorString:[NSString stringWithFormat:@"Failed to verify file %@: SHA1 mismatch", path.lastPathComponent]];
         } else {
