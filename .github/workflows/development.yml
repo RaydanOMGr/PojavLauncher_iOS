@@ -51,7 +51,7 @@ jobs:
       - name: Setup Java JDK
         uses: actions/setup-java@v4.4.0
         with:
-          java-version: 8.202.08.2
+          java-version: 8.202.08
           distribution: corretto
 
       - name: Check Java Version
