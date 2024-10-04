@@ -29,7 +29,7 @@
 }
 
 - (NSURLSessionDownloadTask *)createDownloadTask:(NSString *)url size:(NSUInteger)size sha:(NSString *)sha altName:(NSString *)altName toPath:(NSString *)path success:(void (^)())success {
-    return [self createDownloadTask0:url size:size sha:sha altName:altName toPath:path success retryCount:0];
+    return [self createDownloadTask0:url size:size sha:sha altName:altName toPath:path success:success retryCount:0];
 }
 
 // Add file to the queue
