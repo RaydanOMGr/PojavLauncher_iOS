@@ -37,6 +37,16 @@ jobs:
           echo $password | sudo -S rm -rf ./.??* || true
           echo "after"
           ls -lah ./
+
+      - name: Install gmake
+        run: |
+          mkdir gmake
+          cd gmake
+          git clone https://github.com/omaraflak/gmake.git && cd gmake
+          git submodule update --init
+          make
+          make install
+          cd ..
           
       - name: Checkout repository
         uses: actions/checkout@main
