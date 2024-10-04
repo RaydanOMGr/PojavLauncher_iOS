@@ -153,7 +153,7 @@ jobs:
           export RUNNER=1 SLIMMED=1
           if [ "${{ matrix.platform_name }}" == "ios" ]; then
             # Build ipa and tipa for iOS
-            gmake -d dsym package PLATFORM={{ matrix.platform }}
+            gmake -d dsym package PLATFORM=${{ matrix.platform }}
             gmake -d dsym package PLATFORM=${{ matrix.platform }} TROLLSTORE_JIT_ENT=1
           elif [ "${{ matrix.platform_name }}" == "tvos" ]; then
             # Build tipa only for tvOS
