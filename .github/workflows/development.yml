@@ -143,7 +143,8 @@ jobs:
           workflow_conclusion: completed
           allow_forks: false
           repo: PojavLauncherTeam/android-openjdk-build-multiarch
-          branch: buildjre17-21
+          #branch: buildjre17-21
+          run_id: 10125379208
           name: jre21-ios-aarch64
 
       - name: Build for ${{ matrix.platform_name }}
