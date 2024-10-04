@@ -33,8 +33,8 @@ jobs:
         run: |
           echo "before"
           ls -lah ./
-          echo $password | sudo -S rm -rf ./* || true
-          echo $password | sudo -S rm -rf ./.??* || true
+          mkdir clean
+          cd clean
           echo "after"
           ls -lah ./
 
