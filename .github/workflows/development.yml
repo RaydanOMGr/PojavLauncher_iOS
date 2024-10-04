@@ -52,7 +52,7 @@ jobs:
         uses: actions/setup-java@v4.4.0
         with:
           java-version: 8
-          distribution: corretto
+          distribution: openjdk
 
       - name: Check Java Version
         run: |
