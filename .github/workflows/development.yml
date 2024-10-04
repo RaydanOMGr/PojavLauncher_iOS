@@ -38,13 +38,14 @@ jobs:
           echo "after"
           ls -lah ./
 
-      - name: Install gmake
+      - name: Install homebrew
         run: |
           mkdir gmake
           cd gmake
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
           brew install make
           alias gmake='make'
+          brew install ldid
           cd ..
 
       - name: Setup Java JDK
