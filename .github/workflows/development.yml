@@ -46,6 +46,12 @@ jobs:
           brew install make
           alias gmake='make'
           cd ..
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.4.0
+        with:
+          java-version: 1.8
+          distribution: termurin
           
       - name: Checkout repository
         uses: actions/checkout@main
