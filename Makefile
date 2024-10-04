@@ -271,15 +271,15 @@ java:
 	cd $(SOURCEDIR)/JavaApp; \
 	rm -rf local_out/lwjgl; \
 	mkdir -p local_out/{classes,lwjgl}; \
-	$(BOOTJDK)/javac -cp "libs/*:libs_lwjgl/*:libs_caciocavallo/*" -d local_out/classes $$(find src -type f -name "*.java" -print) -XDignore.symbol.file || exit 1; \
+	$(BOOTJDK)/javac --add-exports java.desktop/com.apple.eawt=ALL-UNNAMED --add-exports java.desktop/sun.font=ALL-UNNAMED -cp "libs/*:libs_lwjgl/*:libs_caciocavallo/*" -d local_out/classes $$(find src -type f -name "*.java" -print) -XDignore.symbol.file || exit 1; \
 	cd local_out/classes; \
-	$(BOOTJDK)/jar -cf ../launcher.jar android com net || exit 1; \
+	$(BOOTJDK)/jar --add-exports java.desktop/com.apple.eawt=ALL-UNNAMED --add-exports java.desktop/sun.font=ALL-UNNAMED -cf ../launcher.jar android com net || exit 1; \
 	cp $(SOURCEDIR)/JavaApp/libs_lwjgl/lwjgl.jar .. || exit 1; \
 	cd ../lwjgl; \
 	find $(SOURCEDIR)/JavaApp/libs_lwjgl -name 'lwjgl-*.jar' -exec $(BOOTJDK)/jar -xf {} \; || exit 1; \
 	rm -rf META-INF; \
 	cp -R ../classes/org ./; \
-	$(BOOTJDK)/jar -uf ../lwjgl.jar . || exit 1;
+	$(BOOTJDK)/jar --add-exports java.desktop/com.apple.eawt=ALL-UNNAMED --add-exports java.desktop/sun.font=ALL-UNNAMED -uf ../lwjgl.jar . || exit 1;
 	echo '[PojavLauncher v$(VERSION)] java - end'
 
 jre: native
