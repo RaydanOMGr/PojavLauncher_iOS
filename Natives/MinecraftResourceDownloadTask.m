@@ -70,7 +70,7 @@
                 NSLog(@"[MCDL] HTTP 429 - Retrying download for %@ (attempt %ld)", name, (long)retryCount + 1);
                 // Retry the download with an incremented retryCount
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self createDownloadTask:url size:size sha:sha altName:altName toPath:path success:success retryCount:retryCount + 1];
+                    [self createDownloadTask0:url size:size sha:sha altName:altName toPath:path success:success retryCount:retryCount + 1];
                 });
             } else {
                 [self finishDownloadWithError:error file:name];
