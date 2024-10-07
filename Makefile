@@ -73,6 +73,7 @@ else
 $(error This platform is not currently supported for building PojavLauncher)
 endif
 
+$(info java bin $(shell which java))
 $(info java dir $(shell dirname $(which java)))
 BOOTJDK = $(shell dirname $(which java))
 
