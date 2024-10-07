@@ -181,8 +181,8 @@ endif
 
 $(shell javac -version)
 $(shell java -version)
-$(shell echo $IOS)
-$(shell echo $BOOTJDK)
+$(shell echo $(IOS))
+$(shell echo $(BOOTJDK))
 
 ifneq ($(call METHOD_DEPCHECK,$(BOOTJDK)/javac -version),1)
 $(error You need to install JDK 8)
