@@ -145,6 +145,9 @@
 "preference.title.confirm.delete_game_directory" = "The instance %@ will be deleted forever and cannot be restored.";
 "preference.multidir.add_directory" = "add game directory";
 
+"preference.title.download_tries" = "Download tries"
+"preference.title.download_tries" = "The amount of times a file is gonna be attempted to be downloaded after failure."
+
 "preference.title.check_sha" = "Check files after downloading";
 "preference.detail.check_sha" = "This option forces launcher to check the file hash if it's available. Prevents broken downloads.";
 "preference.title.cosmetica" = "Cosmetica Capes";
