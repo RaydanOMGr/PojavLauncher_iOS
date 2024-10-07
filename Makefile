@@ -74,7 +74,7 @@ $(error This platform is not currently supported for building PojavLauncher)
 endif
 
 $(info java bin $(shell which java))
-$(info java dir $(shell dirname $(which java)))
+$(info java dir $(shell dirname $(shell which java)))
 BOOTJDK = $(shell dirname $(which java))
 
 # Define PLATFORM_NAME from PLATFORM
