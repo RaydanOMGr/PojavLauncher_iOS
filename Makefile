@@ -179,6 +179,11 @@ ifneq ($(call METHOD_DEPCHECK,cmake --version),1)
 $(error You need to install cmake)
 endif
 
+javac -version
+java -version
+echo $IOS
+echo $BOOTJDK
+
 ifneq ($(call METHOD_DEPCHECK,$(BOOTJDK)/javac -version),1)
 $(error You need to install JDK 8)
 endif
