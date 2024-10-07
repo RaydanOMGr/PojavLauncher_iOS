@@ -75,7 +75,7 @@ endif
 
 $(info java bin $(shell which java))
 $(info java dir $(shell dirname $(shell which java)))
-BOOTJDK = $(shell dirname $(which java))
+BOOTJDK = $(shell dirname $(shell which java))
 
 # Define PLATFORM_NAME from PLATFORM
 ifeq ($(PLATFORM),2)
