@@ -73,6 +73,8 @@ else
 $(error This platform is not currently supported for building PojavLauncher)
 endif
 
+BOOTJDK = $(shell dirname $(which java))
+
 # Define PLATFORM_NAME from PLATFORM
 ifeq ($(PLATFORM),2)
 PLATFORM_NAME := ios
