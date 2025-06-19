@@ -73,6 +73,10 @@ else
 $(error This platform is not currently supported for building PojavLauncher)
 endif
 
+$(info java bin $(shell which java))
+$(info java dir $(shell dirname $(shell which java)))
+BOOTJDK = $(shell dirname $(shell which java))
+
 # Define PLATFORM_NAME from PLATFORM
 ifeq ($(PLATFORM),2)
 PLATFORM_NAME := ios
@@ -179,12 +183,18 @@ ifneq ($(call METHOD_DEPCHECK,cmake --version),1)
 $(error You need to install cmake)
 endif
 
+$(shell javac -version)
+$(shell java -version)
+$(info IOS is $(IOS))
+$(info BOOTJDK is $(BOOTJDK))
+$(shell $(BOOTJDK)/java -version)
+
 ifneq ($(call METHOD_DEPCHECK,$(BOOTJDK)/javac -version),1)
 $(error You need to install JDK 8)
 endif
 
 ifeq ($(IOS),0)
-ifeq ($(filter 1.8.0,$(shell $(BOOTJDK)/javac -version &> javaver.txt && cat javaver.txt | cut -b 7-11 && rm -rf javaver.txt)),)
+ifeq ($(findstring 1.8.0,$(shell $(BOOTJDK)/javac -version 2>&1)),)
 $(error You need to install JDK 8)
 endif
 endif
